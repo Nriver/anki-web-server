@@ -1,0 +1,10 @@
+[uwsgi]
+socket = 127.0.0.1:5000
+wsgi-file=app.py
+master=true
+processes=1
+threads=1
+callable = app
+#stats=127.0.0.1:9191
+memory-report = true
+pidfile = uwsgi.pid

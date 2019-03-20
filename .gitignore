@@ -5,6 +5,7 @@ __pycache__/
 ankiweb/ankiweb.conf
 *debug.py
 *.bat
+uwsgi_config.ini
 
 # C extensions
 *.so
