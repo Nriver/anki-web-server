@@ -24,7 +24,8 @@ anki-web-server requires the [anki-sync-server](https://github.com/tsudoko/anki-
 
         $ pip install -r requirements.txt
 
-5. Modify ankiweb/ankiweb.conf with your setup.
+5. Rename ankiweb/ankiweb.conf.sample to ankiweb/ankiweb.conf and modity the content with your setup.
+
 6. Run anki-web-server.
 
         $ pip install -r requirements.txt
