@@ -10,7 +10,7 @@ This project is a personal web server replacement for the official ankiweb with 
 anki-web-server requires the [anki-sync-server](https://github.com/tsudoko/anki-sync-server) from tsudoko.
 
 # Install
-1. Build up a [anki-sync-server](https://github.com/tsudoko/anki-sync-server).
+1. Build up a [anki-sync-server](https://github.com/tsudoko/anki-sync-server). Make sure you have already enabled user authentication and add some cards to the sync server.
 
 2. Modify anki-sync-server code. Open anki-sync-server/ankisyncd/thread.py. Change the value of monitor_frequency and monitor_inactivity in  to a small value(say 1 and 3).
 
