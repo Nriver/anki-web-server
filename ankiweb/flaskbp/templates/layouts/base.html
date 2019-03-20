@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nblog.css') }}">
+    <title>Egg in the shell - 壳中蛋</title>
+    {% block head_content %}{% endblock %}
+</head>
+<body>
+<div class="page-wrap">
+{% block body_content %}{% endblock %}
+</div>
+</body>
+
+<footer class="site-footer">
+  <div class="container n-footer-div">
+    <center>
+      <p>
+        nriver.cn © 2019 
+        <span>  |  </span>
+        Powered by      <a href="http://flask.pocoo.org/">Flask</a>
+        <span>  |  </span>
+        Developed by <a href="https://github.com/Nriver">Junqing Zeng</a>.
+      </p>
+    </center>
+  </div>
+</footer>
+
+</html>

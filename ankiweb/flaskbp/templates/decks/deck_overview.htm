@@ -1,0 +1,79 @@
+{% extends "layouts/base.html" %}
+
+{% import '_macros.htm' as macros with context %}
+
+{% block body_content %}
+{{macros.navigation_widget()}}
+
+<style type="text/css">
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 order-md-3">
+          <center><h2>{{deck.name}}</h2></center>
+          <center><div class="mb-2">{{deck.desc|safe}}</div></center>
+          {% if finished %}
+          <center><div class="mb-2"><b>恭喜! 这个牌组今天的部分已经学完.</b></div></center>
+          {% else %}
+          <center>
+            <div class="form-actions mb-2">
+              <button id="study_button" type="submit" onclick="jump_to_page('{{url_for('cards.card_study')}}')" class="btn btn-primary">开始学习</button>
+            </div>
+          </center>
+          <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">新卡片</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{newCount}} <small class="text-muted">张</small></h1>
+              </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">学习中</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{lrnCount}} <small class="text-muted">张</small></h1>
+              </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">待复习</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{revCount}} <small class="text-muted">张</small></h1>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-1 order-md-1 d-none d-lg-block">
+        </div>
+        <div class="col-md-2 order-md-2 d-none d-lg-block">
+        </div>
+
+        <div class="col-md-3 mt-1 order-md-4">
+        </div>
+    </div>
+</div>
+
+{% include 'layouts/bootstrap_script.html' %}
+<script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+<link href="{{ url_for('static', filename='css/prism.css') }}" rel="stylesheet">
+<script>
+function jump_to_page(page_url){
+    window.location.href = page_url;
+}
+
+function showdeck(did){
+    console.log(did);
+    // window.location.href = ;
+}
+
+</script>
+
+{% endblock %}

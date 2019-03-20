@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% import '_macros.htm' as macros with context %}
+
+{% block body_content %}
+{{macros.navigation_widget()}}
+
+<style type="text/css">
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 order-md-3">
+            {% if deck_list|length == 0 %}
+                <div>
+                    没有deck.
+                </div>
+            {% else %}
+                <ul class="list-group">
+                {% for deck in deck_list %}
+                <li class="mb-2 list-group-item d-flex justify-content-between align-items-center list-group-item-primary" onclick="jump_to_page('{{ url_for('decks.deck_overview', did=deck.did) }}')">
+                  <span>{{deck.name}}</span>
+                  <span class="badge badge-primary badge-pill">{{deck.new}}</span>
+                </li>
+                {% endfor %}
+                </ul>
+                <div>今天花了{{thetime}}秒, 学了{{cards}}张卡片</div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-1 order-md-1 d-none d-lg-block">
+        </div>
+        <div class="col-md-2 order-md-2 d-none d-lg-block">
+        </div>
+
+        <div class="col-md-3 mt-1 order-md-4">
+        </div>
+    </div>
+</div>
+
+{% include 'layouts/bootstrap_script.html' %}
+<script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+<link href="{{ url_for('static', filename='css/prism.css') }}" rel="stylesheet">
+<script>
+function jump_to_page(page_url){
+    window.location.href = page_url;
+}
+</script>
+
+{% endblock %}

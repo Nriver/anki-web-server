@@ -1,0 +1,74 @@
+{% macro pagination_widget(pagination, endpoint, fragment='') %}
+
+<ul class="pagination">
+    {% if pagination.has_prev %}
+    <li class="page-item">
+        <a class="page-link" href="{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{{ fragment }}"><</a>
+    </li>
+    {% endif %}
+    {% for p in pagination.iter_pages(left_edge=1, left_current=2, right_current=2, right_edge=1) %}
+        {% if p %}
+            {% if p == pagination.page %}
+            <li class="page-item active">
+            {% else %}
+            <li class="page-item">
+            {% endif %}
+                <a class="page-link" href="{{ url_for(endpoint, page = p, **kwargs) }}{{ fragment }}">&nbsp;{{ p }}&nbsp;</a>
+            </li>
+        {% else %}
+        <li class="page-item ml-1 mr-1">
+            <a class="disabled">&hellip;</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+    {% if pagination.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{{ fragment }}">></a>
+    </li>
+    {% endif %}
+</ul>
+{% endmacro %}
+
+{% macro navigation_widget(choosed='') %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="text-center n-banner-title d-none d-sm-block">
+        <a class="site-title">
+            <h1><img src="https://nriver.cn/favicon.png"/> anki web mini</h1>
+            <p>欢迎来到anki web mini</p>
+        </a>
+    </div>
+    <!-- <div class="container-fluid"> -->
+        <nav class="navbar navbar-expand-lg navbar-expand-md bg-dark navbar-dark">
+            <div class="col-lg-3 d-block d-md-none d-sm-none d-lg-block"></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mr-auto">
+                    {% if session['logged_in'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('decks.decks_list')}}">{{session['current_user'].username}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('decks.decks_list')}}">牌組</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('login.logout')}}">退出</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('login.login_page')}}">登入</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/Nriver/" target="blank">Github</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nblog/post/">项目说明</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 d-block d-md-none d-sm-none d-lg-block"></div>
+        </nav>
+</div>
+{% endmacro %}

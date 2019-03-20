@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 ankiweb/ankiweb.conf
+*debug.py
 
 # C extensions
 *.so

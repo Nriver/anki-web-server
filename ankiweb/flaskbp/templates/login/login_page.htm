@@ -1,0 +1,65 @@
+{% extends "layouts/base.html" %}
+
+{% import '_macros.htm' as macros with context %}
+
+{% block body_content %}
+{{macros.navigation_widget()}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <form id="login_form" action="/nblog/login/do_login" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label" for="username"><b>用户名:</b></label>
+                    <div class="">
+                        <input type="text" class="form-control" id="username" name="username">
+                        <p class="help-block">你取了啥名字?</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="password"><b>密码:</b></label>
+                    <div class="">
+                       <input type="password" class="form-control" id="password" name="password" />
+                        <p class="help-block">你快敲, 我不看.</p>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button id="login_button" type="submit" class="btn btn-primary">登入</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jsencrypt.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript">
+
+$('#login_button').on('click', function(event) {
+    event.preventDefault(); // To prevent following the link (optional)
+    username = $("#username").val();
+    password = $("#password").val();
+    $.ajax({
+      url: "{{ url_for('login.do_login') }}",
+      type: 'POST',
+      data: {
+          username: username,
+          password: password
+      },
+      success: function(data) {
+          console.log("data", data);
+          if (data.result == true) {
+              window.location.href = data.next;
+          } else {
+              window.location.reload();
+          }
+      }
+    });
+});
+
+</script>
+{% endblock %}

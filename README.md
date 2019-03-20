@@ -4,7 +4,7 @@
 
 [anki](https://apps.ankiweb.net/) is a great website. It's supposed to be a life saver for people want to learn with flash cards. However, their sever is too slow and often fail to sync data from my iPhone.
 
-This project is a personal web server replacement for the official ankiweb. Inspired by [anki-sync-server](https://github.com/tsudoko/anki-sync-server).
+This project is a personal web server replacement for the official ankiweb with limited functions. Inspired by [anki-sync-server](https://github.com/tsudoko/anki-sync-server).
 
 # Requirement
 anki-web-server requires the [anki-sync-server](https://github.com/tsudoko/anki-sync-server) from tsudoko.

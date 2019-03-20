@@ -1,0 +1,164 @@
+{% extends "layouts/base.html" %}
+
+{% import '_macros.htm' as macros with context %}
+
+{% block body_content %}
+{{macros.navigation_widget()}}
+
+<style type="text/css">
+
+</style>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-12 order-md-3">
+      <center><h2>{{card.name}}</h2></center>
+      <center><div class="mb-2">{{card.desc|safe}}</div></center>
+
+      <div class="card-card mb-3 text-center">
+        <div id="question_box">
+            <div class="card mb-4 box-shadow" onclick="show_answer();">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">显示答案</h4>
+              </div>
+            </div>
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">问题</h4>
+            </div>
+            <div class="card-body">
+              {{question|safe}}
+            </div>
+            <div class="ml-2 mr-2 mb-2">
+            {% for sound in question_sound_list %}
+              {% if sound.endswith('.mp4') %}
+              <div class="embed-responsive embed-responsive-16by9">
+                <video id="question_sound" webkit-playsinline="true" playsinline="true" controls="controls" autoplay="autoplay">
+                  <source src="{{url_for('cards.card_media',filename=sound)}}"/>
+                </video>
+              </div>
+              {% endif %}
+
+              {% if sound.endswith('.mp3') %}
+              <div>
+                <audio id="question_sound" controls="controls" autoplay="autoplay">
+                  <source src="{{url_for('cards.card_media',filename=sound)}}"/>
+                </audio>
+              </div>
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div id="answer_box" style="display:none;">
+            <div class="card mb-4 box-shadow" onclick="show_question();">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">显示问题</h4>
+              </div>
+            </div>
+            <div class="card-deck mb-3 text-center">
+              {% for btn in btn_list %}
+              <div class="card mb-4 box-shadow" onclick="answer_question({{btn[0]}})">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">{{btn[1]}}</h4>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">答案</h4>
+            </div>
+            <div class="card-body">
+              {{answer|safe}}
+            </div>
+            {% for sound in answer_sound_list %}
+              {% if sound.endswith('.mp4') %}
+              <div class="embed-responsive embed-responsive-16by9">
+                <video id="answer_sound" webkit-playsinline="true" playsinline="true" controls="controls">
+                  <source src="{{url_for('cards.card_media',filename=sound)}}"/>
+                </video>
+              </div>
+              {% endif %}
+
+              {% if sound.endswith('.mp3') %}
+              <div>
+                <audio id="answer_sound" controls="controls">
+                  <source src="{{url_for('cards.card_media',filename=sound)}}"/>
+                </audio>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-1 order-md-1 d-none d-lg-block">
+    </div>
+    <div class="col-md-2 order-md-2 d-none d-lg-block">
+    </div>
+
+    <div class="col-md-3 mt-1 order-md-4">
+    </div>
+  </div>
+</div>
+
+{% include 'layouts/bootstrap_script.html' %}
+<script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+<link href="{{ url_for('static', filename='css/prism.css') }}" rel="stylesheet">
+<script>
+function jump_to_page(page_url){
+    window.location.href = page_url;
+}
+
+function show_answer(){
+    $("#answer_box").show();
+    $("#question_box").hide();
+    var question_sound=document.getElementById("question_sound");
+    if (question_sound != undefined){
+        question_sound.pause();
+    }
+    var answer_sound=document.getElementById("answer_sound");
+    if (answer_sound != undefined){
+        answer_sound.currentTime=0;
+        answer_sound.play();
+    }
+}
+
+function show_question(){
+    $("#answer_box").hide();
+    $("#question_box").show();
+    var answer_sound=document.getElementById("answer_sound");
+    if (answer_sound != undefined){
+        answer_sound.pause();
+    }
+    var question_sound=document.getElementById("question_sound");
+    if (question_sound != undefined){
+        question_sound.currentTime=0;
+        question_sound.play();
+    }
+}
+
+function answer_question(answer){
+  console.log(answer);
+  $.ajax({
+    url: "{{url_for('cards.card_answer')}}",
+    type: 'POST',
+    data: {
+        answer: answer
+    },
+    success: function(data) {
+        console.log("data", data);
+        if (data.result == true) {
+            window.location.href = data.next;
+        } else {
+            window.location.reload();
+        }
+    }
+  });
+}
+
+</script>
+
+{% endblock %}
