@@ -1,0 +1,13 @@
+[web_app]
+debug = True
+listen_IP = 127.0.0.1
+listen_port = 5000
+context_path = ankiweb
+secret_key = YOUR_SECRET_KEY
+
+data_root = /path/to/anki/collections
+base_url = /sync/
+base_media_url = /msync/
+auth_db_path = /path/to/anki/auth.db
+# optional, for session persistence between restarts
+session_db_path = /path/to/anki/session.db
