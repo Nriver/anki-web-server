@@ -1,0 +1,47 @@
+/*
+* @Author: Zengjq
+* @Date:   2019-03-07 00:40:39
+* @Last Modified by:   Zengjq
+* @Last Modified time: 2019-03-07 12:57:28
+*/
+
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -80px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height: 80px; 
+}
+.site-footer {
+  background-color: #e9ecef;
+  margin-top: 10px;
+}
+
+div.n-footer-div{
+    padding-top: 25px;
+}
+
+div.n-banner-title{
+    padding-bottom: 20px;
+}
+
+div.jumbotron {
+    padding-top: 40px;
+    padding-bottom: 0;
+}
+
+a.site-title{
+    text-decoration:none;
+    color:black;
+}
+* {
+    border-radius: 0 !important;
+}
