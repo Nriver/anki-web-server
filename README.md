@@ -7,6 +7,8 @@
 This project is a personal web server replacement for the official ankiweb with limited functions. Inspired by [anki-sync-server](https://github.com/tsudoko/anki-sync-server).
 
 # Requirement
+Python 3.
+
 anki-web-server requires the [anki-sync-server](https://github.com/tsudoko/anki-sync-server) from tsudoko.
 
 # Install

@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 ankiweb/ankiweb.conf
 *debug.py
+*.bat
 
 # C extensions
 *.so
