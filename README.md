@@ -28,6 +28,7 @@ anki-web-server requires the [anki-sync-server](https://github.com/tsudoko/anki-
 
 6. Run anki-web-server.
 
-        $ pip install -r requirements.txt
+        $ cd ankiweb
+        $ python app.py
 
 7. Open [http://127.0.0.1:27702/ankiweb/](http://127.0.0.1:27702/ankiweb/) in your browser.
