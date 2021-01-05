@@ -8,8 +8,8 @@ import sys
 from pathlib import Path
 from flask import g, session, request, redirect, url_for
 import traceback
-script_path = os.path.split(os.path.realpath(__file__))[0].replace('\\', '/')
-sys.path.insert(0, os.path.join(Path(script_path).parent, "anki-bundled"))
+# script_path = os.path.split(os.path.realpath(__file__))[0].replace('\\', '/')
+#sys.path.insert(0, os.path.join(Path(script_path).parent, "anki-bundled"))
 
 from flaskbp import create_app
 

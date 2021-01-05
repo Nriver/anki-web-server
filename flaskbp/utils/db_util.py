@@ -21,5 +21,6 @@ def get_collection():
     if col is None:
         username = session['current_user']['username']
         collection_path = data_root + '/' + username + '/collection.anki2'
-        col = g._collection = Collection(collection_path, lock=True)
+        # col = g._collection = Collection(collection_path, lock=True)
+        col = g._collection = Collection(collection_path, server=True)
     return col

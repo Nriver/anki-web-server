@@ -2,13 +2,16 @@
 __pycache__/
 *.py[cod]
 *$py.class
-ankiweb/ankiweb.conf
+ankiweb.conf
 *debug.py
 *.bat
 uwsgi_config.ini
 restart.sh
 run.sh
 stop.sh
+.history/
+.vscode/
+.idea/
 
 # C extensions
 *.so

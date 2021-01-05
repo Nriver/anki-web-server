@@ -1,0 +1,9 @@
+[web_app]
+anki_sync_server_path = /home/somewhere_you_put_it/anki-sync-server/src
+debug = True
+listen_IP = 127.0.0.1
+listen_port = 27702
+context_path = ankiweb
+secret_key = YOUR_SECRET_KEY
+base_url = /sync/
+base_media_url = /msync/
