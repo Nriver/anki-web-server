@@ -6,10 +6,14 @@
 
 This project is a personal web server replacement for the official ankiweb with limited functions. Inspired by [anki-sync-server](https://github.com/ankicommunity/anki-sync-server).
 
-# Requirement
+# Docker install
+For a quick start, you can use docker. Please check [anki-web-server-docker](https://github.com/Nriver/anki-web-server-docker), it will start both snyc server and web server for you.
+
+
+# Manual install Requirements
 anki-web-server runs on Python 3. It needs the [anki-sync-server](https://github.com/ankicommunity/anki-sync-server) from ankicommunity for data server.
 
-# Install
+# Manual Install
 1. Build up a [anki-sync-server](https://github.com/tsudoko/anki-sync-server). Make sure you have already enabled user authentication and add some cards to the sync server.
 
 2. Install requirements for anki-web-server.

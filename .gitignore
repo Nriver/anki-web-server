@@ -12,6 +12,7 @@ stop.sh
 .history/
 .vscode/
 .idea/
+venv/
 
 # C extensions
 *.so

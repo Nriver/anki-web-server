@@ -35,8 +35,8 @@ def card_study():
     card = col.sched.getCard()
     if card is None:
         return redirect(url_for('decks.deck_overview'))
-    question = card._getQA()['q']
-    answer = card._getQA()['a']
+    question = card.q()
+    answer = card.a()
     # 把声音文件名拿出来
     question_sound_list = allSounds(question)
     answer_sound_list = allSounds(answer)
