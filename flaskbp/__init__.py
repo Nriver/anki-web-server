@@ -9,7 +9,7 @@ from flaskbp.module.login import bp_login
 from flaskbp.module.decks import bp_decks
 from flaskbp.module.cards import bp_cards
 import logging
-from settings import debug, context_path
+from settings import debug, context_path, force_https
 
 
 def create_app(configName):
@@ -31,5 +31,10 @@ def create_app(configName):
     app.register_blueprint(bp_login, url_prefix=add_url_prefix("/login"))
     app.register_blueprint(bp_decks, url_prefix=add_url_prefix("/decks"))
     app.register_blueprint(bp_cards, url_prefix=add_url_prefix("/cards"))
+
+    if force_https:
+        app.config.update(dict(
+            PREFERRED_URL_SCHEME = 'https'
+        ))
 
     return app

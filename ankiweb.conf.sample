@@ -7,3 +7,4 @@ context_path = ankiweb
 secret_key = YOUR_SECRET_KEY
 base_url = /sync/
 base_media_url = /msync/
+force_https = False
