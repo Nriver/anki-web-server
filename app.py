@@ -1,22 +1,17 @@
-# -*- coding: utf-8 -*-
-# @Author: Zengjq
-# @Date:   2019-03-14 19:40:47
-# @Last Modified by:   Zengjq
-# @Last Modified time: 2019-03-20 18:36:21
-import os
-import sys
-from pathlib import Path
-from flask import g, session, request, redirect, url_for
 import traceback
-# script_path = os.path.split(os.path.realpath(__file__))[0].replace('\\', '/')
-#sys.path.insert(0, os.path.join(Path(script_path).parent, "anki-bundled"))
+
+from flask import g, request
+from flask_cors import CORS
 
 from flaskbp import create_app
+from settings import listen_IP, listen_port
 
-from settings import listen_IP, listen_port, context_path, secret_key, data_root, base_url, base_media_url, auth_db_path, session_db_path
+# script_path = os.path.split(os.path.realpath(__file__))[0].replace('\\', '/')
+# sys.path.insert(0, os.path.join(Path(script_path).parent, "anki-bundled"))
 
 app = create_app('')
 
+CORS(app)
 
 @app.teardown_appcontext
 def close_connection(exception):

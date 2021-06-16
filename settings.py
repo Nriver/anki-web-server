@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author: Zengjq
-# @Date:   2018-06-07 23:52:51
-# @Last Modified by:   Zengjq
-# @Last Modified time: 2019-03-18 16:51:12
 import os
 import configparser
 script_path = os.path.split(os.path.realpath(__file__))[0].replace('\\', '/')
@@ -22,3 +17,4 @@ base_media_url = conf.get('web_app', 'base_media_url')
 auth_db_path = os.path.join(anki_sync_server_path,'auth.db')
 session_db_path = os.path.join(anki_sync_server_path,'session.db')
 force_https = conf.getboolean('web_app', 'force_https')
+media_domain = conf.get('web_app', 'media_domain')

@@ -1,26 +1,15 @@
-# -*- coding: utf-8 -*-
-# @Author: Zengjq
-# @Date:   2019-03-18 15:37:04
-# @Last Modified by:   Zengjq
-# @Last Modified time: 2019-03-20 18:43:22
-import os
-import re
-import sqlite3
-import hashlib
 import html
-from flask import g, session, render_template, request, jsonify, url_for, send_from_directory, redirect
-from flaskbp.module.cards import bp_cards
+import re
+
+from flask import session, render_template, request, jsonify, url_for, send_from_directory, redirect
+
 from flaskbp.decorators.login_decorator import login_required
-from flaskbp.utils.db_util import get_collection
-from settings import config, data_root, auth_db_path
-from anki import Collection
-
-import anki.db
-import anki.sync
-import anki.utils
+from flaskbp.module.cards import bp_cards
+from flaskbp.utils.db_tool import get_collection
+from settings import data_root
 
 
-def allSounds(text):
+def all_sounds(text):
     _soundReg = r"\[sound:(.*?)\]"
     match = re.findall(_soundReg, text)
     sound_list = list(map(html.unescape, match))
@@ -30,7 +19,7 @@ def allSounds(text):
 @bp_cards.route('/study')
 @login_required
 def card_study():
-    col = get_collection()
+    col = get_collection(session['current_user']['username'])
     col.reset()
     card = col.sched.getCard()
     if card is None:
@@ -38,8 +27,8 @@ def card_study():
     question = card.q()
     answer = card.a()
     # 把声音文件名拿出来
-    question_sound_list = allSounds(question)
-    answer_sound_list = allSounds(answer)
+    question_sound_list = all_sounds(question)
+    answer_sound_list = all_sounds(answer)
     # 前端不显示声音信息
     question = re.sub(r"\[sound:[^]]+\]", "", question)
     answer = re.sub(r"\[sound:[^]]+\]", "", answer)
@@ -70,7 +59,7 @@ def card_study():
 @login_required
 def card_answer():
     answer = request.values.get('answer')
-    col = get_collection()
+    col = get_collection(session['current_user']['username'])
     col.reset()
     card = col.sched.getCard()
     sched = col.sched

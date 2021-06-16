@@ -11,10 +11,13 @@ For a quick start, you can use docker. Please check [anki-web-server-docker](htt
 
 
 # Manual install Requirements
-anki-web-server runs on Python 3. It needs the [anki-sync-server](https://github.com/ankicommunity/anki-sync-server) from ankicommunity for data server.
+anki-web-server runs on Python 3(3.8 is preferred). It needs the [anki-sync-server](https://github.com/ankicommunity/anki-sync-server) from ankicommunity for data server.
 
 # Manual Install
-1. Build up a [anki-sync-server](https://github.com/tsudoko/anki-sync-server). Make sure you have already enabled user authentication and add some cards to the sync server.
+
+Use anki 2.1.40 for better compatibility.
+
+1. Build up a [anki-sync-server](https://github.com/ankicommunity/anki-sync-server). Make sure you have already enabled user authentication and add some cards to the sync server.
 
 2. Install requirements for anki-web-server.
 
@@ -30,4 +33,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
-5. Open [http://127.0.0.1:27702/ankiweb/](http://127.0.0.1:27702/ankiweb/) in your browser. Enjoy!
+5. Open [http://127.0.0.1:27702/](http://127.0.0.1:27702/) in your browser. Enjoy!
+
+(If you have set `context_path=ankiweb` in ankiweb.conf, the url would be [http://127.0.0.1:27702/ankiweb/](http://127.0.0.1:27702/ankiweb/).)
+
+# vue api
+[http://127.0.0.1:27702/api/](http://127.0.0.1:27702/api/)
