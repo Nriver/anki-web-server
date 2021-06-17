@@ -3,6 +3,7 @@ from flask import Flask
 from flaskbp.api.login import api_login
 from flaskbp.api.card import api_card
 from flaskbp.api.deck import api_deck
+from flaskbp.api.status import api_status
 from flaskbp.module.index import bp_index
 from flaskbp.module.login import bp_login
 from flaskbp.module.decks import bp_decks
@@ -35,6 +36,7 @@ def create_app(configName):
     app.register_blueprint(bp_cards, url_prefix=add_url_prefix('/cards'))
 
     # api for vue
+    app.register_blueprint(api_status, url_prefix=add_url_prefix('/api/status'))
     app.register_blueprint(api_login, url_prefix=add_url_prefix('/api/auth'))
     app.register_blueprint(api_deck, url_prefix=add_url_prefix('/api/deck'))
     app.register_blueprint(api_card, url_prefix=add_url_prefix('/api/card'))
