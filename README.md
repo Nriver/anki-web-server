@@ -39,3 +39,8 @@ python app.py
 
 # vue api
 [http://127.0.0.1:27702/api/](http://127.0.0.1:27702/api/)
+
+test the api with
+```
+curl http://127.0.0.1:27702/api/status/
+```

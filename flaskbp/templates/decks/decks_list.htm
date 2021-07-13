@@ -23,6 +23,12 @@
                   <span>{{deck.name}}</span>
                   <span class="badge badge-primary badge-pill">{{deck.new}}</span>
                 </li>
+                    {% for sub_deck in deck.sub_deck %}
+                    <li class="ml-5 mb-2 list-group-item d-flex justify-content-between align-items-center list-group-item-primary" onclick="jump_to_page('{{ url_for('decks.deck_overview', did=sub_deck.did) }}')">
+                      <span>{{sub_deck.name}}</span>
+                      <span class="badge badge-primary badge-pill">{{sub_deck.new}}</span>
+                    </li>
+                    {% endfor %}
                 {% endfor %}
                 </ul>
                 <div>今天花了{{thetime}}秒, 学了{{cards}}张卡片</div>

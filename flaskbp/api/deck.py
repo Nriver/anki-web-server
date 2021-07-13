@@ -21,7 +21,11 @@ def decks_list():
         name, did, due, lrn, new, children = node
         if did == 1:
             continue
-        deck_list.append({'name': name, 'did': did, 'new': new})
+        sub_deck = []
+        for sub_node in children:
+            sub_name, sub_did, sub_due, sub_lrn, sub_new, sub_children = sub_node
+            sub_deck.append({'name': sub_name, 'did': sub_did, 'new': sub_new})
+        deck_list.append({'name': name, 'did': did, 'new': new, 'sub_deck': sub_deck})
 
     card_count, learn_time = col.db.first("""
     select count(), sum(time)/1000 from revlog
