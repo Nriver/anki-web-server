@@ -1,4 +1,4 @@
 anki==2.1.40
 flask==2.0.1
 flask-cors==3.0.10
-PyJWT==2.1.0
+PyJWT==2.4.0
