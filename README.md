@@ -1,6 +1,8 @@
 # anki-web-server
 
-!!! Warning. The software is in a early stage, backup your data before use !!!
+!!! The project is no longer being maintained due to the constant changes and code refactoring of Anki. Adapting to each update has become too exhausting. !!!
+
+Warning. The software is in a early stage, backup your data before use
 
 [anki](https://apps.ankiweb.net/) is a great website. It's supposed to be a life saver for people want to learn with flash cards. However, their sever is too slow and often fail to sync data from my iPhone.
 
